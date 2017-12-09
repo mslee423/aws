@@ -1,0 +1,19 @@
+<p><%= @post.title %> at <%= @post.date %></p>
+<hr>
+<% @review.each do |review| %>
+    <%= review.todo %>
+<%end%>
+<hr>
+<h1>추가하긔</h1>
+<%#= form_tag "/posts/#{@post.id}", method:'patch' do %>
+<%#= text_field_tag 'input_todo' %>
+<%#= submit_tag 'sumbit' %>
+<%#end%>
+
+<%=form_for ([@post, @r]) do |r|%>
+<%=r.hidden_field :post_id, :value => @post.id%>
+<%=r.text_field :todo%>
+<%=r.submit%>
+<%end%>
+<%= link_to '뒤로가기', :back %>
+<%= link_to'삭제', "/posts/#{@post.id}", method: :delete, data:{confirm: "실화냐?"} %>
